@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ItemButton from "./ItemButton";
 
 export default function Item(props) {
   const [total, setTotal] = useState(0);
@@ -23,23 +24,9 @@ export default function Item(props) {
         <p>{desc}</p>
       </div>
       <div className="mb-12 flex items-center">
-        <button
-          className="bg-white text-black border-2 border-lightGray py-1 px-5 min-w-[50] text-base rounded cursor-pointer mx-2
-          transition-opacity duration-200 ease-out shadow-[1px_1px_1px_rgba(0,0,0,0.2)]
-          active:shadow-[0_0px_rgba(0,0,0,0.2)] active:translate-y-px hover:opacity-80
-          disabled:opacity-40 disabled:cursor-not-allowed"
-          disabled={total === 0}
-          onClick={handleRemoveClick}
-        >
-          -
-        </button>
+        <ItemButton disabled={total === 0} onChangeQuantity={handleRemoveClick}>-</ItemButton>
         <h3 className="text-base">{total ? total : ""}</h3>
-        <button className="bg-white text-black border-2 border-lightGray py-1 px-5 min-w-[50] text-base rounded cursor-pointer mx-2
-          transition-opacity duration-200 ease-out shadow-[1px_1px_1px_rgba(0,0,0,0.2)]
-          active:shadow-[0_0px_rgba(0,0,0,0.2)] active:translate-y-px hover:opacity-80
-          disabled:opacity-40 disabled:cursor-not-allowed" onClick={handleAddClick}>
-          +
-        </button>
+        <ItemButton onChangeQuantity={handleAddClick}>+</ItemButton>
       </div>
     </div>
   );
